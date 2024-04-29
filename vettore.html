@@ -1,80 +1,41 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage</title>
 </head>
+<body>
 
-<style>
-    body {
-            font-family: 'Verdana', sans-serif;
-            background: #4287f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
+    <p>cognome</p>
+    <input type="text" id="cognome1">
 
-        div {
-            background-color: white;
-            width: 400px;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    <p>nome</p>
+    <input type="text" id="nome1">
 
-        h1 {
-            color: #4287f5;
-        }
+    <button onclick="LocalSt()">Send</button>
+<script> 
 
-        input {
-            margin: 10px 0;
-            padding: 8px;
-            width: calc(100% - 20px);
-            border: 1px solid #4287f5;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+function LocalSt(){
+    var cognome= document.getElementById("cognome1").value;
+    var nome= document.getElementById("nome1").value;
+    var informazioniPersona = [nome, cognome];
 
-        input[type="button"] {
-            background-color: #4287f5;
-            color: white;
-            cursor: pointer;
-        }
 
-        input[type="button"]:hover {
-            background-color: #3366cc;
-        }
-</style>
-
-<script>
-
-    function salva(){
-        var print = document.getElementById("nome").value;
-           
-        var print1 = document.getElementById("cognome").value;
-      
-        
-        const vett = [];
-        vett.push(print, print1);
-
-        localStorage.setItem("dati", vett); 
-        window.location.href="LocalStorageVett2.html";
-    
+    if (typeof(Storage) !== "undefined") {
+        localStorage.setItem("dati", informazioniPersona);
     }
+    else {
+        document.getElementById("stampa").innerHTML = "Il browser non supporta lo storage";
+    }
+    
+    document.location.href="stampals.html";
+
+}
 </script>
 
-<body>
-    <div>
-        <h1>Registrazione:</h1>
-        <br>
-        <input type="text" placeholder="Nome" id="nome">
-        <input type="text" placeholder="Cognome" id="cognome">
-
-        <input type="button" value="clicca per salvare" onclick="salva()">
-    </div>
+</body>
 
 </html>
