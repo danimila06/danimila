@@ -1,0 +1,28 @@
+
+function readData() { 
+  var data = localStorage.getItem("data"); 
+  if (data === null) {   
+    return "Nessun dato salvato in localStorage";
+  }  
+  var jsonData = JSON.parse(data);
+ return jsonData;
+}
+
+function createPage() {
+ 
+  var data = readData();
+
+ 
+  var body = `
+    <h1>Dati ricevuti</h1>
+    <ul>
+      ${data.map(function(item) {
+        return `<li>${item}</li>`;
+      }).join("")}
+    </ul>
+  `;
+
+  `;
+
+  
+}
