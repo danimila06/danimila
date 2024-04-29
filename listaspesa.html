@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Lista della Spesa </title>
+</head>
+<body>
+<h1>Lista della Spesa</h1>
+<input type="text" id="itemInput" placeholder="Inserisci elemento">
+<button onclick="Aggiungioggetto()">Aggiungi</button>
+<ul id="Lista"></ul>
+<script>
+    var Oggetti = localStorage.getItem('Oggetti') ? localStorage.getItem('Oggetti').split(',') : []
+    function Aggiornalista() {
+        var Lista = document.getElementById("Lista")
+        Lista.innerHTML = ""
+        for (var i = 0; i < Oggetti.length; i++) {
+            var Oggettolista = document.createElement("li")
+            Oggettolista.appendChild(document.createTextNode(Oggetti[i]))
+            var removeButton = document.createElement("button")
+            removeButton.innerHTML = "Rimuovi" 
+            removeButton.onclick = (function(index) {
+                return function() {
+                    Oggetti.splice(index, 1)
+                    localStorage.setItem('Oggetti', Oggetti.join(','))
+                    Aggiornalista()
+                }
+            })(i)
+            Oggettolista.appendChild(removeButton)
+            Lista.appendChild(Oggettolista)
+        }
+    }
+
+    Aggiornalista();
+    function Aggiungioggetto() {
+        var itemInput = document.getElementById("itemInput")
+        if (itemInput.value !== "") {
+            Oggetti.push(itemInput.value)
+            localStorage.setItem('Oggetti', Oggetti.join(','))
+            Aggiornalista();
+            itemInput.value = ""
+        }
+    }
+</script>
+</body>
+</html>
