@@ -1,0 +1,16 @@
+body{
+    background-color: rgb(49, 49, 49);
+    color: rgb(78, 160, 255);
+    font-family: "Poppins", sans-serif;
+    
+}
+.tlt h1{
+    font-size: 35px;
+    text-align: center;
+}
+.tabella{
+    position: absolute;
+    
+
+}
+
